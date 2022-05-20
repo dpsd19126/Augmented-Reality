@@ -26,14 +26,14 @@
       AFRAME.registerComponent("marker-distance", {
         init: function()
             {
-        this.h = document.querySelector("#h")
-        this.o = document.querySelector("#o")
+        this.hydro = document.querySelector("#hydro")
+        this.oxy = document.querySelector("#oxy")
         this.water = document.querySelector("#water")
-        this.card1 = document.querySelector("#card1")
-        this.card2 = document.querySelector("#card2")
-        this.card3 = document.querySelector("#card3")
-        this.markerH = document.querySelector("#hydromark")
-        this.markerO = document.querySelector("#oxymark")
+        this.hydro2 = document.querySelector("#hydro2")
+        this.oxy2 = document.querySelector("#oxy2")
+        this.water2 = document.querySelector("#water2")
+        this.markerH = document.querySelector("#H")
+        this.markerO = document.querySelector("#O")
       },
           tick: function () {
 
@@ -113,16 +113,16 @@
 		
 		
 		
-		 <a-marker id="hydromark" type="pattern" url="assets/pattern-card-H.patt">
-          <a-image id="card1"  src="assets/card-H.png" position="0 0 0" rotation="-90 0 0" width="1" height="1"></a-image>
-          <a-entity id = "h" gltf-model="assets/hydro.glb" position="0 1 0" scale="1.09 1.09 1.09" animation__rotate = "property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;" animation-mixer="clip: *; loop: repeat; timeScale: 1.5;"></a-entity>
+		 <a-marker id="H" type="pattern" url="assets/pattern-card-H.patt">
+          <a-image id="hydro2"  src="assets/card-H.png" position="0 0 0" rotation="-90 0 0" width="1" height="1"></a-image>
+          <a-entity id = "hydro" gltf-model="assets/hydro.glb" position="0 1 0" scale="1.09 1.09 1.09" animation__rotate = "property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;" animation-mixer="clip: *; loop: repeat; timeScale: 1.5;"></a-entity>
           
        </a-marker>
 
-    <a-marker id="oxymark" type="pattern" url="assets/pattern-card-O.patt">
-	    <a-image id="card2" src="assets/card-O.png" position="0 0 0" rotation="-90 0 0" width="1" height="1"></a-image>
-	     <a-image id="card3" src="assets/7.png" position="0 0 0" rotation="-90 0 0" width="1" height="1" visible="false"></a-image>
-          <a-entity id = "o" gltf-model="assets/oxygen.glb" position="0 1 0" scale="1.1 1.1 1.1" animation__rotate = "property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;" animation-mixer="clip: *; loop: repeat;"></a-entity>
+    <a-marker id="O" type="pattern" url="assets/pattern-card-O.patt">
+	    <a-image id="oxy2" src="assets/card-O.png" position="0 0 0" rotation="-90 0 0" width="1" height="1"></a-image>
+	     <a-image id="water2" src="assets/7.png" position="0 0 0" rotation="-90 0 0" width="1" height="1" visible="false"></a-image>
+          <a-entity id = "oxy" gltf-model="assets/oxygen.glb" position="0 1 0" scale="1.1 1.1 1.1" animation__rotate = "property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;" animation-mixer="clip: *; loop: repeat;"></a-entity>
             <a-entity id="water" gltf-model="assets/water.glb" position="0 0 0" scale="0.5 0.5 0.5" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" visible="false"></a-entity>
 	
     </a-marker>
