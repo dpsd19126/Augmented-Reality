@@ -21,6 +21,58 @@
 
     <body style="margin : 0px; overflow: hidden;">
 	    
+	        <script>
+
+      AFRAME.registerComponent("marker-distance", {
+        init: function()
+            {
+        this.hydro = document.querySelector("#hydro")
+        this.oxy = document.querySelector("#oxy")
+        this.water = document.querySelector("#water")
+        this.hydro2 = document.querySelector("#hydro2")
+        this.oxy2 = document.querySelector("#oxy2")
+        this.water2 = document.querySelector("#water2")
+        this.markerH = document.querySelector("#H")
+        this.markerO = document.querySelector("#O")
+      },
+          tick: function () {
+
+              var markerHPos, markerOPos, dist
+              markerHPos = new THREE.Vector3();
+              this.markerH.object3D.getWorldPosition(markerHPos);
+
+              markerOPos = new THREE.Vector3();
+              this.markerO.object3D.getWorldPosition(markerOPos);
+
+              //distance
+              dist = markerHPos.distanceTo(markerOPos);
+
+              if (dist<2){
+                this.water.setAttribute("visible", true)
+                this.hydro.setAttribute("visible", false)
+                this.oxy.setAttribute("visible", false)
+                this.hydro2.setAttribute("visible", false)
+                this.oxy2.setAttribute("visible", false)
+		this.water2.setAttribute("visible", true)
+              }
+              else{
+                this.water.setAttribute("visible", false)
+                this.hydro.setAttribute("visible", true)
+                this.oxy.setAttribute("visible", true)
+                this.hydro2.setAttribute("visible", true)
+                this.oxy2.setAttribute("visible", true)
+	        this.water2.setAttribute("visible", false)
+              }
+          }
+
+      });
+
+      </script>
+
+
+	    
+	    
+	    
 
         <a-scene
     vr-mode-ui="enabled: false;"
@@ -86,59 +138,7 @@
         <a-entity camera></a-entity>
         </a-scene>
 	    
-	  <!.. <script>
-	    	    	    
-	     AFRAME.registerComponent("marker-distance", {
-
-            tick: function () {
-
-                this.markerDistance()
-            },
-
-            markerDistance: function () {
-
-                var marker1Pos, marker2Pos
-
-                marker1Pos = new THREE.Vector3();
-                marker1.object3D.getWorldPosition(marker1Pos);
-
-                marker2Pos = new THREE.Vector3();
-                marker2.object3D.getWorldPosition(marker2Pos);
-
-                //distance
-                var markerDistance = marker1Pos.distanceTo(marker2Pos);
-
-                var marker1 = document.querySelector("#pattern-card-O")
-                var marker2 = document.querySelector("#pattern-card-H")
-
-
-                var entity1 = document.querySelector('#oxygen')
-                var entity2 = document.querySelector('#hydro')
-                var entity3 = document.querySelector('#water')
-
-
-                    if (markerDistance < 2) {
-
-                        entity1.setAttribute('visible', false)
-                        entity2.setAttribute('visible', false)
-                        entity3.setAttribute('visible', true)
-		 
-                    }
-
-
-                else {
-
-                        entity1.setAttribute('visible', true)
-                    entity2.setAttribute('visible', true)
-                    entity3.setAttribute('visible', false)
-
-                    }
-
-            }
-        });-->
-
-    </script>
-	    
+	 
 	    
 	    
     </body>
