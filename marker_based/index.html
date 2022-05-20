@@ -5,9 +5,7 @@
     <!--<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>-->
     <script src="build/aframe-ar.js"></script>
 	
-	<!-- aframe-extras script needed for using the glb's animation-->
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    
+	
     <!-- particles system component -->
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
     
@@ -15,66 +13,18 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
     <script src="build/aframe-speech-command-component.js"></script> 
 	
-	<!-- script for measuring distance -->
-    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+	
     
 
     <body style="margin : 0px; overflow: hidden;">
 	    
-	        <script>
-
-      AFRAME.registerComponent("marker-distance", {
-        init: function()
-            {
-        this.hydro = document.querySelector("#hydro")
-        this.oxy = document.querySelector("#oxy")
-        this.water = document.querySelector("#water")
-        this.hydro2 = document.querySelector("#hydro2")
-        this.oxy2 = document.querySelector("#oxy2")
-        this.water2 = document.querySelector("#water2")
-        this.markerH = document.querySelector("#H")
-        this.markerO = document.querySelector("#O")
-      },
-          tick: function () {
-
-              var markerHPos, markerOPos, dist
-              markerHPos = new THREE.Vector3();
-              this.markerH.object3D.getWorldPosition(markerHPos);
-
-              markerOPos = new THREE.Vector3();
-              this.markerO.object3D.getWorldPosition(markerOPos);
-
-              //distance
-              dist = markerHPos.distanceTo(markerOPos);
-
-              if (dist<2){
-                this.water.setAttribute("visible", true)
-                this.hydro.setAttribute("visible", false)
-                this.oxy.setAttribute("visible", false)
-                this.hydro2.setAttribute("visible", false)
-                this.oxy2.setAttribute("visible", false)
-		this.water2.setAttribute("visible", true)
-              }
-              else{
-                this.water.setAttribute("visible", false)
-                this.hydro.setAttribute("visible", true)
-                this.oxy.setAttribute("visible", true)
-                this.hydro2.setAttribute("visible", true)
-                this.oxy2.setAttribute("visible", true)
-	        this.water2.setAttribute("visible", false)
-              }
-          }
-
-      });
-
-      </script>
-
+	       
 
 	    
 	    
 	    
 
-        <a-scene
+     <a-scene
     vr-mode-ui="enabled: false;"
     renderer="logarithmicDepthBuffer: true;"
     embedded
@@ -105,10 +55,10 @@
 	                          speech-command__start="command: start; type: attribute; attribute: visible; value: true;"
 	                          speech-command__stop="command: stop; type: attribute; attribute: visible; value: false;">
 	                </a-entity>
-	
+	<a-entity marker-distance></a-entity>
 	
 	            </a-marker>
-             <a-entity marker-distance></a-entity>
+             
             
 		   <a-marker preset='custom' type='pattern' url='assets/pattern-DPSD19126.patt'>
 		         
@@ -127,15 +77,17 @@
 
     <a-marker id="O" type="pattern" url="assets/pattern-card-O.patt">
 	    <a-image id="oxy2" src="assets/card-O.png" position="0 0 0" rotation="-90 0 0" width="1" height="1"></a-image>
-	     <a-image id="water2" src="assets/7.png" position="0 0 0" rotation="-90 0 0" width="1" height="1" visible="false"></a-image>
-          <a-entity id = "oxy" gltf-model="assets/oxygen.glb" position="0 1 0" scale="1.1 1.1 1.1" animation__rotate = "property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;" animation-mixer="clip: *; loop: repeat;"></a-entity>
-            <a-entity id="water" gltf-model="assets/water.glb" position="0 0 0" scale="0.5 0.5 0.5" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" visible="false"></a-entity>
+	   <a-entity id = "oxy" gltf-model="assets/oxygen.glb" position="0 1 0" scale="1.1 1.1 1.1" animation__rotate = "property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;" animation-mixer="clip: *; loop: repeat;"></a-entity>
+          
 	
     </a-marker>
 		  
 		 
-     
-        <a-entity camera></a-entity>
+             <a-image id="water2" src="assets/7.png" position="0 0 0" rotation="-90 0 0" width="1" height="1" visible="false"></a-image>
+            <a-entity id="water" gltf-model="assets/water.glb" position="0 0 0" scale="0.5 0.5 0.5" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" visible="false"></a-entity>
+       
+	     
+	     <a-entity camera></a-entity>
         </a-scene>
 	    
 	 
